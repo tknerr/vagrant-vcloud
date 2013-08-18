@@ -26,14 +26,14 @@ vCloud Director with vagrant, at a high level.
     If trying to use a public Catalog from another Organization that process
     *will* fail.
 
-    [x] This should be fixed.
+    [x] This should be fixed.  
 
 *   Wait for catalog item to be ready before processing to next step.
 
     If you do a catalog upload, and deploy right after, the catalog item is
     going through a ovf import process through vSphere which takes some time.
 
-    [x] This should be fixed.
+    [x] This should be fixed.  
 
 *   Set the VM guest customization default password to 'vagrant'
 
@@ -67,9 +67,9 @@ vCloud Director with vagrant, at a high level.
     *   vApp Networks (including the NAT & Portforarding rules)
     *   All the VMs and their configuration
 
-    [x] Destroying Virtual Machines is now possible using their predefined name
-    [x] When the last Virtual Machine is destroyed, vApp will be deleted.
-    [ ] Cleaning network NAT rules (portforwarding etc...)
+    [x] Destroying Virtual Machines is now possible using their predefined name  
+    [x] When the last Virtual Machine is destroyed, vApp will be deleted  
+    [ ] Cleaning network NAT rules (portforwarding etc...)  
 
 *   Halt
 
@@ -112,8 +112,8 @@ vCloud Director with vagrant, at a high level.
     Those two methods could be called to check for information and map the 
     information accordingly:
 
-    [ ] Using unison to handle this part
-    
+    [ ] Using unison to handle this part  
+
     ```ruby
     cnx = cfg.vcloud_cnx.driver  
     cnx.get_vapp_edge_public_ip(vAppId)  
@@ -129,7 +129,7 @@ vCloud Director with vagrant, at a high level.
     This will display the state of the vApp and it's overall configuration.
     vApp status, VM status, and Network NAT rules for example would be nice.
 
-    [x] Checking the Virtual Machines status is now possible
+    [x] Checking the Virtual Machines status is now possible  
 
     ```Shell
     Current machine states:
@@ -156,7 +156,7 @@ vCloud Director with vagrant, at a high level.
     It will basically compose the vApp from all the properties in the Vagrant 
     file, deploy that vApp, and power it on.
 
-    [x] Creating vApp 
-    [x] Adding Virtual Machines to the vApp from configuration
-    [x] Post configuration of the Virtual Machine (Guest Customization)
-    [ ] Configuration of the Network Port forwarding rules
+    [x] Creating vApp   
+    [x] Adding Virtual Machines to the vApp from configuration  
+    [x] Post configuration of the Virtual Machine (Guest Customization)  
+    [ ] Configuration of the Network Port forwarding rules  
