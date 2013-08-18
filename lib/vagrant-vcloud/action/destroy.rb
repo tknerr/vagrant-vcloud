@@ -21,6 +21,8 @@ module VagrantPlugins
 
           @logger.debug("Number of VMs in the vApp: #{testvApp[:vms_hash].count}")
 
+          # FIXME: Delete associated network port forwarding rules
+
           if testvApp[:vms_hash].count == 1
             env[:ui].info("Single VM left in the vApp, destroying the vApp...")
             env[:ui].info("Powering off vApp...")
