@@ -374,7 +374,7 @@ module VagrantPlugins
           vms.each do |vm|
             vapp_local_id = vm.css('VAppScopedLocalId')
             addresses = vm.css('rasd|Connection').collect{|n| n['vcloud:ipAddress'] || n['ipAddress'] }
-            vms_hash[vm['name'].to_sym] = {
+            vms_hash[vm['name'].to_sym] = { # FIXME, something is weird here (result -> :"vm-name", instead of :vm-name)
               :addresses => addresses,
               :status => convert_vapp_status(vm['status']),
               :id => vm['href'].gsub("#{@api_url}/vApp/vm-", ''),
@@ -903,7 +903,8 @@ module VagrantPlugins
         #
         # - vappid: id of the vapp to be modified
         # - network_name: name of the vapp network to be modified
-        # - config: hash with network configuration specifications, must contain an array inside :nat_rules with the nat rules to be applied.
+        # - config: hash with network configuration specifications, must contain 
+        #           an array inside :nat_rules with the nat rules to be applied.
         def set_vapp_port_forwarding_rules(vappid, network_name, config={})
           builder = Nokogiri::XML::Builder.new do |xml|
           xml.NetworkConfigSection(

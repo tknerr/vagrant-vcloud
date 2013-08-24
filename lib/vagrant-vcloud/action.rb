@@ -195,6 +195,7 @@ module VagrantPlugins
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
           b.use ConnectVCloud
+          b.use InventoryCheck # Always do an inventory check
 
           # Handle box_url downloading early so that if the Vagrantfile
           # references any files in the box or something it all just
@@ -207,11 +208,11 @@ module VagrantPlugins
 
           b.use Call, IsCreated do |env, b2|
             if !env[:result]
-              b2.use InventoryCheck
               b2.use BuildVApp
             end
           end
           b.use action_start
+          b.use ConfigureEdgeNetwork
           b.use DisconnectVCloud
         end
       end
@@ -237,6 +238,7 @@ module VagrantPlugins
       autoload :ReadSSHInfo, action_root.join("read_ssh_info")
       autoload :InventoryCheck, action_root.join("inventory_check")
       autoload :BuildVApp, action_root.join("build_vapp")
+      autoload :ConfigureEdgeNetwork, action_root.join("configure_edge_network")
       autoload :ReadState, action_root.join("read_state")
       autoload :SyncFolders, action_root.join("sync_folders")
       autoload :TimedProvision, action_root.join("timed_provision")

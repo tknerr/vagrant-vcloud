@@ -21,7 +21,6 @@ module VagrantPlugins
           vmName = env[:machine].name
 
           if !cfg.ip_subnet.nil?
-
             @logger.debug("Input address: #{cfg.ip_subnet}")
 
             begin
@@ -59,22 +58,19 @@ module VagrantPlugins
               :parent_network =>  cfg.vdc_network_id,
               :enable_firewall => "false"
             }
-
           else
-
             # No IP subnet specified, reverting to defaults
             network_options = { 
               :name => "Vagrant-vApp-Net", 
               :gateway => "10.1.1.1", 
               :netmask => "255.255.255.0", 
-              :start_address => "10.1.1.2", 
+              :start_address => "10.1.1.11", 
               :end_address => "10.1.1.254", 
               :fence_mode => "natRouted",
               :ip_allocation_mode => "POOL",
               :parent_network =>  cfg.vdc_network_id,
               :enable_firewall => "false"
             }
-
           end
 
           if env[:machine].get_vapp_id.nil?
@@ -83,7 +79,7 @@ module VagrantPlugins
 
             compose = cnx.compose_vapp_from_vm(
               cfg.vdc_id, 
-              "Vagrant-#{Etc.getlogin}-#{Socket.gethostname.downcase}-#{SecureRandom.hex(4)}",
+              "Vagrant-#{Etc.getlogin}-#{SecureRandom.hex(4)}",
               "vApp created by #{Etc.getlogin} running on #{Socket.gethostname.downcase} using vagrant-vcloud on #{Time.now.strftime("%B %d, %Y")}",
               { 
                 vmName => cfg.catalog_item[:vms_hash][env[:machine].box.name.to_s][:id]

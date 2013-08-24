@@ -66,7 +66,7 @@ module VagrantPlugins
       # Port forwarding rules
       #
       # @return [Hash]
-      attr_reader :port_forwarding_rules
+      attr_accessor :port_forwarding_rules
       
       ##
       ## vCloud Director config runtime values

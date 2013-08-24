@@ -40,6 +40,30 @@ vCloud Director with vagrant, at a high level.
     The vApp will actually not power on successfully with guest customization
     enabled, and a blank password.
 
+    [x] This should be fixed.  
+
+*   Avoid serializing vApp/Virtual Machine build when multi Virtual Machines
+
+    Find a way to avoid doing the following steps:  
+    - Create vApp  
+    - Create VM1  
+    - Boot & Guest Customize VM1  
+    - Applying network port forwarding rules  
+    - Create VM2  
+    - Boot & Guest Customize VM2  
+    - Applying network port forwarding rules  
+    - repeat for every VM...  
+
+    This would avoid spending a lot of time for each VM on the boot/reboot process
+    for the guest customization process.
+
+*   Inconsistency to fix on the following variable through the whole code/lib
+    
+    This should never happen ! (vm/vApp is confusing !)  
+    :vm_scoped_local_id => rule[:VAppScopedVmId]
+
+    We might need to clean some data structures between the driver/api  
+
 ### Vagrant Actions ###
 
 *   Box
@@ -159,4 +183,4 @@ vCloud Director with vagrant, at a high level.
     [x] Creating vApp   
     [x] Adding Virtual Machines to the vApp from configuration  
     [x] Post configuration of the Virtual Machine (Guest Customization)  
-    [ ] Configuration of the Network Port forwarding rules  
+    [x] Configuration of the Network Port forwarding rules  
