@@ -23,7 +23,7 @@ module VagrantPlugins
           task_id = cnx.poweron_vm(vmId)
           wait = cnx.wait_task_completion(task_id)
 
-          true
+          #true
 
           @app.call env
         end

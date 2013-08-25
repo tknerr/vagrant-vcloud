@@ -10,19 +10,16 @@ module VagrantPlugins
         end
 
         def call(env)
-          @env = env
-
 
           cfg = env[:machine].provider_config
           cnx = cfg.vcloud_cnx.driver
           vmName = env[:machine].name
 
-	      env[:ui].info("Booting VM...")
-	      poweronVM = cnx.poweron_vm(env[:machine].id)
-	      cnx.wait_task_completion(poweronVM)
+  	      env[:ui].info("Booting VM...")
+  	      poweronVM = cnx.poweron_vm(env[:machine].id)
+  	      cnx.wait_task_completion(poweronVM)
 
-
-          @app.call(env)
+          @app.call env
         end
       end
     end

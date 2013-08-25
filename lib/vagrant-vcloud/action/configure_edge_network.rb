@@ -9,7 +9,6 @@ module VagrantPlugins
           @logger = Log4r::Logger.new("vagrant_vcloud::action::ConfigureEdgeNetwork")
         end
 
-
         def fetchOldRules(vapp_nat_rules)
           old_nat_rules = []
 
@@ -46,15 +45,12 @@ module VagrantPlugins
           new_nat_rules
         end
 
-
         def AppendNewRules(oldRules, newRules)
 
           nat_rules = []
 
           if oldRules.length() > 0
-
             @logger.debug("Old rules exists, appending rules")
-
 
             # Fetch the differences between rules arrays
             diffRules = newRules.to_a - oldRules.to_a 
@@ -95,8 +91,7 @@ module VagrantPlugins
 
           vAppId = env[:machine].get_vapp_id
           vmName = env[:machine].name.to_s
-          vmId = env[:machine].id
-          
+
           @logger.info("vShield Edge Network configuration...")
 
           vApp = cnx.get_vapp(vAppId)
@@ -142,6 +137,7 @@ module VagrantPlugins
           end
 
           @app.call env
+          
         end
       end
     end

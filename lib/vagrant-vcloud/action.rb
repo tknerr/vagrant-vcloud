@@ -203,16 +203,10 @@ module VagrantPlugins
           b.use Call, IsCreated do |env, b2|
             if !env[:result]
               b2.use HandleBoxUrl
-            end
-          end
-
-          b.use Call, IsCreated do |env, b2|
-            if !env[:result]
               b2.use BuildVApp
             end
           end
-          b.use action_start
-          b.use ConfigureEdgeNetwork
+          b.use PowerOnVApp
           b.use DisconnectVCloud
         end
       end
@@ -227,6 +221,7 @@ module VagrantPlugins
       autoload :Resume, action_root.join("resume")
       autoload :PowerOff, action_root.join("power_off")
       autoload :PowerOn, action_root.join("power_on")
+      autoload :PowerOnVApp, action_root.join("power_on_vapp")
       autoload :Suspend, action_root.join("suspend")
       autoload :Destroy, action_root.join("destroy")
       autoload :MessageCannotHalt, action_root.join("message_cannot_halt")
@@ -238,7 +233,7 @@ module VagrantPlugins
       autoload :ReadSSHInfo, action_root.join("read_ssh_info")
       autoload :InventoryCheck, action_root.join("inventory_check")
       autoload :BuildVApp, action_root.join("build_vapp")
-      autoload :ConfigureEdgeNetwork, action_root.join("configure_edge_network")
+      autoload :ConfigureEdgeNetwork, action_root.join("configure_edge_network") # FIXME extend vagrant commands to add "networking"
       autoload :ReadState, action_root.join("read_state")
       autoload :SyncFolders, action_root.join("sync_folders")
       autoload :TimedProvision, action_root.join("timed_provision")
