@@ -66,8 +66,7 @@ module VagrantPlugins
           totalVMs = cfg.port_forwarding_rules.length()
 
           @logger.debug("Current VMs #{currentVMs}, Total VMs #{totalVMs}")
-
-
+          
           if currentVMs == totalVMs
 
             # Configure vApp vShield Edge port forwarding rules 

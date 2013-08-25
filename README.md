@@ -78,7 +78,7 @@ vCloud Director with vagrant, at a high level.
     [x] Ability to upload a local box into a vCloud Catalog Template/Catalog item  
 
     Url to fetch the current box:  
-    [Precise32 box for vagrant-vcloud] (http://vstuff.org/precise32.box)
+    [Precise32 box for vagrant-vcloud] (http://vagrant.tsugliani.fr/precise32.box)
 
 *   Destroy
     
@@ -93,7 +93,7 @@ vCloud Director with vagrant, at a high level.
 
     [x] Destroying Virtual Machines is now possible using their predefined name  
     [x] When the last Virtual Machine is destroyed, vApp will be deleted  
-    [ ] Cleaning network NAT rules (portforwarding etc...)  
+    [x] Cleaning network NAT rules (portforwarding etc...)  
 
 *   Halt
 
