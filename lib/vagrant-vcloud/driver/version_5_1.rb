@@ -1174,19 +1174,27 @@ module VagrantPlugins
         ##
         # Poll a given task until completion
         def wait_task_completion(taskid)
-          status, errormsg, start_time, end_time, response = nil
+          
+          errormsg, task = nil
+
           loop do
             task = get_task(taskid)
             break if task[:status] != 'running'
             sleep 1
           end
 
-          if status == 'error'
-            errormsg = response.css("Error").first
+          if task[:status] == 'error'
+            errormsg = task[:response].css("Error").first
             errormsg = "Error code #{errormsg['majorErrorCode']} - #{errormsg['message']}"
           end
 
-          { :status => status, :errormsg => errormsg, :start_time => start_time, :end_time => end_time }
+          { 
+            :status => task[:status], 
+            :errormsg => errormsg, 
+            :start_time => task[:start_time], 
+            :end_time => task[:end_time], 
+            :response => task[:response] 
+          }
         end
 
         ##
